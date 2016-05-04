@@ -1,0 +1,47 @@
+<h1>OH HI</h1>
+<p><%= @visit.timeframe %></p>
+
+<h2>Visitors</h2>
+<table class="ui very basic collapsing celled table">
+    <tbody>
+    <% @visit.visitors.each do |v| %>
+    <tr>
+      <td>
+        <h4 class="ui image header">
+          <img src="/img/<%= getAvatarFromId(v.id) %>.jpg" class="ui mini rounded image">
+          <div class="content">
+            <%= v.name %>
+            <div class="sub header">Human Resources
+          </div>
+        </div>
+      </h4></td>
+      <td>
+        HOLA!
+      </td>
+    </tr>
+    <% end %>
+    </tbody>
+</table>
+
+<h2>Coming along?</h2>
+<%= form_for([@visit, @visit.visitors.build]) do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.check_box :coming %>
+    <%= f.label :coming %>
+  </p>
+  <p>
+    <%= f.check_box :driver %>
+    <%= f.label :driver %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

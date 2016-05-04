@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  timeframe: 2016-05-03 17:20:44
+
+two:
+  timeframe: 2016-05-03 17:20:44
