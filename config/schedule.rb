@@ -18,3 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+every :wednesday, :at => '1pm' do # Use any day of the week or :weekend, :weekday
+  runner "Visit.createNewVisit"
+end

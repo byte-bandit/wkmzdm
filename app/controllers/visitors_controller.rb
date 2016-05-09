@@ -3,6 +3,7 @@ class VisitorsController < ApplicationController
         @visit = Visit.find(params[:visit_id])
         @visit.visitors.create(visitor_params)
         redirect_to visits_url
+        #render plain: params[:visitor].inspect
     end
 
     private

@@ -1,28 +1,83 @@
-<h1>OH HI</h1>
-<p><%= @visit.timeframe %></p>
+<div class="landpage-image">
+<div class="ui very basic inverted segment">
+    <h2 class="ui header">
+        <img class="ui image" src="logo.png">
+        <div class="content">
+            Wer kommt mit zum Dönermann?
+        </div>
+    </h2>
+</div>
+<div class="ui container">
+<div class="ui raised center aligned segment">
+<div class="ui statistic">
+  <div class="label">
+    Mittwoch
+  </div>
+  <div class="value">
+    <%= @visit.timeframe.strftime("%d.%m.%Y") %>
+  </div>
+  <div class="label">
+    <%= @visit.timeframe.strftime("%H:%M") %>
+  </div>
+</div>
+</div>
 
-<h2>Visitors</h2>
-<table class="ui very basic collapsing celled table">
+<table class="ui celled table">
     <tbody>
     <% @visit.visitors.each do |v| %>
-    <tr>
+    <% if v.coming %><tr class="positive"><% else %><tr class="negative"><% end %>
       <td>
-        <h4 class="ui image header">
-          <img src="/img/<%= getAvatarFromId(v.id) %>.jpg" class="ui mini rounded image">
+        <% if v.coming %><h4 class="ui image header"><% else %><h4 class="ui disabled image header"><% end %>
+          <img src="/img/<%= getAvatarFromName(v.name) %>.jpg" class="ui mini rounded image">
           <div class="content">
             <%= v.name %>
-            <div class="sub header">Human Resources
+            <div class="sub header"><%= ["Döner Minister", "Kebab Kanzler", '"Ohne Zwiebeln bitte!"', "Comedic Relief", "Dürümbeauftragter", "Extra-Scharf-Kid", "Pommes Rot/Weiß", "Pizza Präsident", '"Und dazu einen kleinen gemischten Salat!"'].sample %>
           </div>
         </div>
       </h4></td>
-      <td>
-        HOLA!
+      <td class="center aligned">
+        <% if v.driver && v.coming %>
+        <i class="circular inverted green car icon"></i>
+        <% else %>
+        <i class="disabled circular inverted green car icon"></i>
+        <% end %>
       </td>
+    </tr>
+    <% end %>
+    <%= form_for([@visit, @visit.visitors.build]) do |f| %>
+    <tr>
+        <td>
+            <h4 class="ui image header">
+                <img src="/img/<%= getRandomAvatar() %>.jpg" class="ui mini rounded image">
+                <div class="content">
+                    <div class="ui form">
+                        <div class="fields">
+                            <div class="field">
+                                <%= f.text_field :name, :placeholder => "Dein Name" %>
+                            </div>
+                            <div class="field">
+                                <div class="ui buttons">
+                                    <%= f.hidden_field :coming, {:value => '0'} %>
+                                    <button type="button" class="ui toggle button" id="btnComing">Ich komme nicht mit</button>
+                                    <%= f.hidden_field :driver, {:value => '0'} %>
+                                    <button type="button" class="ui toggle button" id="btnDriver">Ich kann nicht fahren</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h4>
+        </td>
+        <td class="center aligned">
+            <input type="submit" class="ui primary button" value="Eintragen" />
+        </td>
     </tr>
     <% end %>
     </tbody>
 </table>
-
+</div>
+</div>
+<!--
 <h2>Coming along?</h2>
 <%= form_for([@visit, @visit.visitors.build]) do |f| %>
   <p>
@@ -45,3 +100,4 @@
     <%= f.submit %>
   </p>
 <% end %>
+-->
