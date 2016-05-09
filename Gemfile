@@ -47,3 +47,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'whenever', :require => false
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
