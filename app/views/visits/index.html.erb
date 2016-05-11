@@ -58,18 +58,26 @@
                             <div class="field">
                                 <div class="ui buttons">
                                     <%= f.hidden_field :coming, {:value => '0'} %>
-                                    <button type="button" class="ui toggle button" id="btnComing">Ich komme nicht mit</button>
-                                    <%= f.hidden_field :driver, {:value => '0'} %>
-                                    <button type="button" class="ui toggle button" id="btnDriver">Ich kann nicht fahren</button>
+                                    <button type="button" class="ui button">Ich komme nicht mit</button>
+                                    <div class="or"></div>
+                                    <button type="button" class="ui positive button" id="btnComing">Bin dabei</button>
                                 </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui buttons">
+                                    <%= f.hidden_field :driver, {:value => '0'} %>
+                                    <button type="button" class="ui button">Mitfahrer</button>
+                                    <div class="or"></div>
+                                    <button type="button" class="ui positive button" id="btnDriver">Fahrer</button>
+                                </div>
+                            </div>
+                            <div class="field">
+                              <input type="submit" class="ui primary button" value="Eintragen" />
                             </div>
                         </div>
                     </div>
                 </div>
             </h4>
-        </td>
-        <td class="center aligned">
-            <input type="submit" class="ui primary button" value="Eintragen" />
         </td>
     </tr>
     <% end %>
@@ -77,27 +85,3 @@
 </table>
 </div>
 </div>
-<!--
-<h2>Coming along?</h2>
-<%= form_for([@visit, @visit.visitors.build]) do |f| %>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.check_box :coming %>
-    <%= f.label :coming %>
-  </p>
-  <p>
-    <%= f.check_box :driver %>
-    <%= f.label :driver %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
--->

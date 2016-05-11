@@ -5,22 +5,8 @@
 $ -> init()
 
 init = () -> 
-    $('.toggle.button').each (x, e) -> $(e).state()
-
-    $('#btnComing').click ->
-        $(@).state(
-            text:
-                active: 'Ich komme mit'
-                inactive: 'Ich komme nicht mit'
-            )
-
-    $('#btnDriver').click ->
-        $(@).state(
-            text:
-                active: 'Ich kann fahren'
-                inactive: 'Ich kann nicht fahren'
-            )
+    $('.ui.button').each (x, e) -> $(e).click -> $(@).addClass('positive').siblings().removeClass('positive')
 
     $('.new_visitor').submit ->
-        $('input[name="visitor[coming]"]').val($('#btnComing').hasClass('active'))
-        $('input[name="visitor[driver]"]').val($('#btnDriver').hasClass('active'))
+        $('input[name="visitor[coming]"]').val($('#btnComing').hasClass('positive'))
+        $('input[name="visitor[driver]"]').val($('#btnDriver').hasClass('positive'))
